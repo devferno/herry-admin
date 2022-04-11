@@ -1,0 +1,18 @@
+export const enumTypes=[
+    "SWIMWEAR",
+    "SHIRTS",
+    "T-SHIRTS",
+    "SHOES",
+    "BODYSUITS",
+    "BAGS",
+    "ACCESSORIES",
+    "DRESSES",
+    "GILETS",
+    "BACKPACKS",
+    "JACKETS",
+    "SHORTS",
+    "PERFUMES",
+    "HOODIES",
+    "HOMEWEAR",
+  ];
+  export const enumGenders=["men", "women", "kids"];
