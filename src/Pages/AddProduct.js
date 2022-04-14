@@ -4,6 +4,7 @@ import { ImageInputs } from "../components/ImageInputs";
 import { enumTypes, enumGenders } from "../constant";
 import { CustomInput, CustomFormGroup } from "../components/CustomComponent";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const [images, setImages] = useState([""]);
@@ -31,6 +32,7 @@ const AddProduct = () => {
     }
   };
 
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = new FormData();
@@ -48,8 +50,8 @@ const AddProduct = () => {
       .post("/product", form, {
         headers: { authorization: `Bearer ${localStorage.getItem("access-admin") }`}
       })
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
+      .then((res) => navigate("/products"))
+      
   };
 
   return (

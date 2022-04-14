@@ -1,10 +1,19 @@
-import { Button, TableBody,Table,TableHead,TableRow,Paper,TableContainer, TableCell } from '@mui/material';
+import { Button, TableBody,Table,TableHead,TableRow,Paper,TableContainer, TableCell, Typography } from '@mui/material';
 
 import axios from "axios";
 
 import ModeOutlinedIcon from '@mui/icons-material/ModeOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import {Buffer }from "buffer";
+
+const CustomTableCellHeader=({children,...rest})=>{
+  
+  return(
+    <TableCell  props={rest}>
+      <Typography variant="subtitle2" color="GrayText" sx={{fontWeight:"bold",textTransform:"capitalize"}}>{children}</Typography>
+    </TableCell>
+  )
+}
 
 const ProductTable = ({filtered}) => {
   
@@ -19,30 +28,35 @@ const ProductTable = ({filtered}) => {
   }
 
   return (
-    <TableContainer component={Paper} sx={{my:3}}>
+    <TableContainer component={Paper} elevation={0} variant="outlined" sx={{my:3}}>
     <Table>
         <TableHead>
-        <TableCell>
+          <TableRow>
+        <CustomTableCellHeader>
           image
-         </TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Description</TableCell>
-            <TableCell>Price</TableCell>
-            <TableCell>Stock</TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
-            <TableCell>Details</TableCell>
+         </CustomTableCellHeader>
+            <CustomTableCellHeader>Name</CustomTableCellHeader>
+            <CustomTableCellHeader>Description</CustomTableCellHeader>
+            <CustomTableCellHeader>Price</CustomTableCellHeader>
+            <CustomTableCellHeader>Stock</CustomTableCellHeader>
+            <CustomTableCellHeader>type</CustomTableCellHeader>
+            <CustomTableCellHeader>gender</CustomTableCellHeader>
+            <CustomTableCellHeader size="small">update</CustomTableCellHeader>
+            <CustomTableCellHeader >delete</CustomTableCellHeader>
+            </TableRow>
         </TableHead>
         <TableBody>
-       {filtered.map(item=><TableRow key={item._id}>
-          <TableCell> <img src={`data:image/jpeg;base64,${Buffer.from(item.images[0].data.data).toString('base64')}`} width="50px" alt=""/></TableCell>
+       {filtered.map(item=><TableRow key={item._id} sx={{borderCollapse:"unset"}}>
+          <TableCell> <img src={`data:image/jpeg;base64,${Buffer.from(item.images[0].data.data).toString('base64')}`} width="50px" height="50px" style={{objectFit:"cover"}} alt=""/></TableCell>
             <TableCell>{item.name}</TableCell>
-            <TableCell>{item.description}</TableCell>
-            <TableCell>{item.price}</TableCell>
+            <TableCell sx={{fontWeight:"light"}}>{item.description}</TableCell>
+            <TableCell sx={{fontWeight:"bold"}}>{item.price}</TableCell>
             <TableCell>{item.stock}</TableCell>
-            <TableCell><Button size="small"><ModeOutlinedIcon color="success"/></Button></TableCell>
-            <TableCell><Button onClick={deleteProduct(item._id)} size="small"><DeleteOutlinedIcon color="error"/></Button></TableCell>
-            <TableCell><Button size="small">More Details</Button></TableCell>
+            <TableCell>{item.type}</TableCell>
+            <TableCell>{item.gender}</TableCell>
+            <TableCell align="left" size="small"><Button size="small" endIcon={<ModeOutlinedIcon/>} variant='outlined' color="success">update</Button></TableCell>
+            <TableCell align="left" size="small"><Button onClick={deleteProduct(item._id)} endIcon={<DeleteOutlinedIcon/>} color="error" variant="contained" disableElevation size="small">delete</Button></TableCell>
+            
         </TableRow>)}
         </TableBody>
     </Table>

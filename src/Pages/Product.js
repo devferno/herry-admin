@@ -19,7 +19,7 @@ const Product = () => {
 
   const filterProduct=(e)=>{
     e.preventDefault();
-    let newProducts = products.filter(item=>item.name===name);
+    let newProducts = products.filter(item=>item.name.toLowerCase().includes(name.toLowerCase()));
     setFiltered(newProducts);
   }
   return (
@@ -37,7 +37,7 @@ const Product = () => {
           </Button>
         </Link>
         <Box component="form" onSubmit={filterProduct} sx={{display:"flex",alignItems:"center"}}>
-        <TextField variant="outlined" size="small" label="name" value={name} onChange={(e)=>setName(e.target.value)}/>
+        <TextField variant="outlined" size="small" label="name" sx={{background:"#f3f3f3"}} value={name} onChange={(e)=>setName(e.target.value)}/>
         <Button type="submit" ><SearchOutlined/></Button>
     </Box>
       </Box>

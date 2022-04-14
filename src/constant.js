@@ -13,6 +13,7 @@ export const enumTypes=[
     "SHORTS",
     "PERFUMES",
     "HOODIES",
+    "JEANS",
     "HOMEWEAR",
   ];
   export const enumGenders=["men", "women", "kids"];

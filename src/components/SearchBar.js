@@ -2,7 +2,7 @@ import { SearchOutlined } from '@mui/icons-material'
 import { TextField,Button,Box,FormControl,InputLabel,Select,MenuItem } from '@mui/material'
 import React from 'react'
 
-const SearchBar = () => {
+const SearchBar = ({filterProduct}) => {
   return (
     <Box component="form" sx={{display:"flex",alignItems:"center"}}>
         <FormControl sx={{minWidth:120,mx:1}} size="small">
