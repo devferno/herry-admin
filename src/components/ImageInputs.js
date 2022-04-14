@@ -9,21 +9,24 @@ export const ImageInputs = ({
     return (
       <Grid container>
         {images.map((item, id) => (
-          <Grid item xs={12} md={3} sx={{ p: 1 }}>
+          <Grid item xs={12} md={6} sx={{ p: 1 }}>
             <Box
               sx={{
                 position: "relative",
                 cursor: "pointer",
-                minHeight: "350px",
+                height: "200px",
                 p: 2,
                 background: () =>
-                  previews[id] ? `url(${previews[id]})` : "#ddd",
+                  previews[id] ? `url(${previews[id]})` : "#f7f7f7",
+                border:() =>
+                previews[id] ? `none` : "dashed 2px #e0e0e0",
+                borderRadius:"4px",
                 backgroundSize: "cover",
                 objectFit: "cover",
               }}
             >
               <Typography variant="body2" textAlign="center">
-                Choose Image
+                Add Product Image
               </Typography>
               <input
                 style={{
@@ -39,11 +42,12 @@ export const ImageInputs = ({
                 onChange={(e) => handleImageChange(e, id)}
               />
             </Box>
+            
           </Grid>
         ))}
         {images.length < 4 && (
-          <Grid item xs={12} md={3} sx={{ p: 1 }}>
-            <Button onClick={addInput} variant="outlined">
+          <Grid item xs={12} md={6} sx={{ height:"200px",width:"100%",p: 1 }}>
+            <Button onClick={addInput} sx={{height:"200px",width:"100%"}} variant="outlined">
               +
             </Button>
           </Grid>

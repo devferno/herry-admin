@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button,Grid, Typography } from "@mui/material";
 import { ImageInputs } from "../components/ImageInputs";
 import { enumTypes, enumGenders } from "../constant";
 import { CustomInput, CustomFormGroup } from "../components/CustomComponent";
@@ -57,17 +57,8 @@ const AddProduct = () => {
   return (
     <Box>
       <Box component="form" onSubmit={handleSubmit}>
-        <Typography variant="h6" sx={{ p: 1 }}>
-          Images
-        </Typography>
-
-        <ImageInputs
-          previews={previews}
-          addInput={addInput}
-          handleImageChange={handleImageChange}
-          images={images}
-          setImages={images}
-        />
+      <Grid container>
+        <Grid item xs={12} md={6}>
         <Typography variant="h6" sx={{ p: 1 }}>
           Informations
         </Typography>
@@ -171,15 +162,35 @@ const AddProduct = () => {
               name="stock"
             />
           </CustomFormGroup>
+
+        
+        </Box>
+        </Grid>
+        <Grid item xs={12} md={6}>
+       
+        <Typography variant="h6" sx={{ p: 1 }}>
+          Images
+        </Typography>
+
+        <ImageInputs
+          previews={previews}
+          addInput={addInput}
+          handleImageChange={handleImageChange}
+          images={images}
+          setImages={images}
+        />
+        
+        </Grid>
+        </Grid>
           <Button
-            sx={{ my: 2 }}
+            sx={{ my: 2,float:"right",m:1,width:"200px" }}
             type="submit"
             variant="contained"
             disableElevation
+
           >
             Add Product
           </Button>
-        </Box>
       </Box>
     </Box>
   );
